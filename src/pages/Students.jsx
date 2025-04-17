@@ -96,64 +96,64 @@ const Students = () => {
               + Add Student
             </button>
           </div>
-          <table className="min-w-full table-fixed bg-white shadow-lg rounded-lg overflow-hidden">
-            <thead className="bg-blue-600 text-white">
-              <tr>
-                <th className="px-4 py-3 text-left w-1/6">Img</th>
-                <th className="px-4 py-3 text-left w-1/4">Name</th>
-                <th className="px-4 py-3 text-left w-1/6">Age</th>
-                <th className="px-4 py-3 text-left w-1/6">Coins</th>
-                <th className="px-4 py-3 text-left w-1/4">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {students.map((s, index) => (
-                <tr
-                  key={s._id}
-                  className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
-                >
-                  <td className="px-4 py-4">
-                    <Link to="/abouts">
-                      <img
-                        className="w-12 h-12 rounded-full object-cover"
-                        src={`https://spec-repo-1-ez1e.onrender.com/uploads/${s.avatar}`}
-                        alt={s.name}
-                      />
-                    </Link>
-                  </td>
-                  <td className="px-4 py-4">{s.name}</td>
-                  <td className="px-4 py-4">{s.age}</td>
-                  <td className="px-4 py-4 flex items-center gap-2">
-                    <FaBitcoin className="text-yellow-500" /> {s.coins || 0}
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex gap-2 justify-start">
-                      <button
-                        className="bg-yellow-300 p-2 rounded text-black hover:bg-yellow-400 transition duration-300"
-                        onClick={() => handleEdit(s)}
-                      >
-                        <MdModeEdit />
-                      </button>
+          <div className="w-full overflow-x-auto">
+  <table className="min-w-[800px] w-full table-fixed bg-white shadow-lg rounded-lg overflow-hidden">
+    <thead className="bg-blue-600 text-white">
+      <tr>
+        <th className="px-4 py-3 text-left w-1/6">Img</th>
+        <th className="px-4 py-3 text-left w-1/4">Name</th>
+        <th className="px-4 py-3 text-left w-1/6">Age</th>
+        <th className="px-4 py-3 text-left w-1/6">Coins</th>
+        <th className="px-4 py-3 text-left w-1/4">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {students.map((s, index) => (
+        <tr key={s._id} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+          <td className="px-4 py-4">
+            <Link to="/abouts">
+              <img
+                className="w-12 h-12 rounded-full object-cover"
+                src={`https://spec-repo-1-ez1e.onrender.com/uploads/${s.avatar}`}
+                alt={s.name}
+              />
+            </Link>
+          </td>
+          <td className="px-4 py-4">{s.name}</td>
+          <td className="px-4 py-4">{s.age}</td>
+          <td className="px-4 py-4 flex items-center gap-2">
+            <FaBitcoin className="text-yellow-500" /> {s.coins || 0}
+          </td>
+          <td className="px-4 py-4">
+            <div className="flex gap-2 justify-start">
+              <button
+                className="bg-yellow-300 p-2 rounded text-black hover:bg-yellow-400 transition duration-300"
+                onClick={() => handleEdit(s)}
+              >
+                <MdModeEdit />
+              </button>
 
-                      <button
-                        className="bg-red-500 p-2 rounded text-white hover:bg-red-600 transition duration-300"
-                        onClick={() => handleDelete(s._id)}
-                      >
-                        <RiDeleteBin6Line />
-                      </button>
+              <button
+                className="bg-red-500 p-2 rounded text-white hover:bg-red-600 transition duration-300"
+                onClick={() => handleDelete(s._id)}
+              >
+                <RiDeleteBin6Line />
+              </button>
 
-                      <button
-                        className="bg-green-500 p-2 rounded text-white hover:bg-green-600 transition duration-300"
-                        onClick={() => handleCoinModalOpen(s)}
-                      >
-                        <AiOutlinePlusCircle />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              <button
+                className="bg-green-500 p-2 rounded text-white hover:bg-green-600 transition duration-300"
+                onClick={() => handleCoinModalOpen(s)}
+              >
+                <AiOutlinePlusCircle />
+              </button>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
         </div>
       </div>
 

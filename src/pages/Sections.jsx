@@ -7,6 +7,8 @@ import { BsTelegram } from "react-icons/bs";
 import { IoLogoInstagram } from "react-icons/io5";
 import { FaYoutube } from "react-icons/fa";
 import { PiExam } from "react-icons/pi";
+import { IoLogIn } from "react-icons/io5";
+import { FaRegistered } from "react-icons/fa";
 const Sections = ({ isOpen, setIsOpen }) => {
   return (
     <>
@@ -60,6 +62,22 @@ const Sections = ({ isOpen, setIsOpen }) => {
             </Link>
             <Link to="/examen" className="ml-2">
               Exam
+            </Link>
+          </div>
+          <div className="w-48 flex items-center hover:bg-gray-50 text-xl p-3 rounded-md">
+            <Link to="/register">
+            </Link>
+            <FaRegistered />
+            <Link to="/register" className="ml-2">
+              Register
+            </Link>
+          </div>
+          <div className="w-48 flex items-center hover:bg-gray-50 text-xl p-3 rounded-md">
+            <Link to="/login">
+            <IoLogIn />
+            </Link>
+            <Link to="/login" className="ml-2">
+              Login
             </Link>
           </div>
         </div>

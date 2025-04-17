@@ -13,7 +13,9 @@ function App() {
   return (
 
       <Routes>
+        <Route element={<PrivateRoute/>}>
         <Route path="/" element={<Home />} />
+        </Route>
         <Route path="/grades" element={<Grades />} />
         <Route path='/about' element={<Aboutus/>}/>
         <Route path="/students" element={<Students />} />

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { IoCheckmarkCircle } from 'react-icons/io5';
-import { FaCalendarAlt } from 'react-icons/fa';
+import { FaCalendarAlt, FaBook, FaSchool, FaChalkboardTeacher, FaCalendarCheck } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { BsFillTelephoneFill } from 'react-icons/bs';
-import { FaBook, FaSchool, FaChalkboardTeacher, FaCalendarCheck } from 'react-icons/fa';
 
 const Aboutstudent = () => {
   const student = {
@@ -58,38 +57,40 @@ const Aboutstudent = () => {
   return (
     <>
       <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
-        <div className="flex gap-8 justify-center w-full max-w-6xl">
-            <div className="flex w-[500px] bg-gradient-to-r from-blue-400 to-blue-200 py-8 px-6 rounded-2xl shadow-lg">
-            <div>
+        {/* Top Section (Profile + Stats) */}
+        <div className="flex flex-col lg:flex-row gap-8 justify-center w-full max-w-6xl">
+          {/* Profile Card */}
+          <div className="w-full lg:w-[500px] bg-gradient-to-r from-blue-400 to-blue-200 py-8 px-6 rounded-2xl shadow-lg">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
               <img
                 className="w-40 h-40 rounded-full border-4 border-white shadow-md"
                 src="https://cdn.prod.website-files.com/65b95c11ae04f06420162f26/65d7aec04aa4d730958b4951_gs-student-center-hero.webp"
                 alt="Profile"
               />
-            </div>
-            <div className="w-60">
-              <h1 className="font-extrabold text-2xl text-white mb-1">{student.name}</h1>
-              <p className="text-gray-200 mb-4 text-sm">Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
-              <div className="flex items-center mb-2">
-                <IoCheckmarkCircle className="mr-2 text-green-500 text-lg" />
-                <h2 className="font-bold text-white">{student.grade}</h2>
-              </div>
-              <div className="flex items-center mb-2">
-                <FaCalendarAlt className="mr-2 text-yellow-300 text-lg" />
-                <h2 className="font-bold text-white">{student.date}</h2>
-              </div>
-              <div className="flex items-center mb-2">
-                <MdEmail className="mr-2 text-red-300 text-lg" />
-                <h2 className="font-bold text-white">{student.email}</h2>
-              </div>
-              <div className="flex items-center">
-                <BsFillTelephoneFill className="mr-2 text-indigo-300 text-lg" />
-                <h2 className="font-bold text-white">{student.phone}</h2>
+              <div>
+                <h1 className="font-extrabold text-2xl text-white mb-1">{student.name}</h1>
+                <div className="flex items-center mb-2">
+                  <IoCheckmarkCircle className="mr-2 text-green-500 text-lg" />
+                  <h2 className="font-bold text-white">{student.grade}</h2>
+                </div>
+                <div className="flex items-center mb-2">
+                  <FaCalendarAlt className="mr-2 text-yellow-300 text-lg" />
+                  <h2 className="font-bold text-white">{student.date}</h2>
+                </div>
+                <div className="flex items-center mb-2">
+                  <MdEmail className="mr-2 text-red-300 text-lg" />
+                  <h2 className="font-bold text-white">{student.email}</h2>
+                </div>
+                <div className="flex items-center">
+                  <BsFillTelephoneFill className="mr-2 text-indigo-300 text-lg" />
+                  <h2 className="font-bold text-white">{student.phone}</h2>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 max-w-sm">
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
             {cards.map((card) => (
               <div key={card.id} className="bg-white rounded-xl p-5 flex items-center shadow-md hover:shadow-lg">
                 <div className="mr-4">{card.icon}</div>
@@ -102,16 +103,17 @@ const Aboutstudent = () => {
           </div>
         </div>
 
+        {/* Schedule Section */}
         <div className="mt-10 w-full max-w-6xl bg-white rounded-2xl shadow-xl">
           <div className="border-b p-5 text-xl font-bold text-center bg-blue-100 text-blue-800">Teacher's Schedule</div>
           <div className="overflow-x-auto">
-            <div className="grid grid-cols-6 divide-x divide-gray-300">
+            <div className="grid grid-cols-6 divide-x divide-gray-300 min-w-[700px]">
               <div className="bg-blue-50 font-semibold text-center py-3 text-blue-700">Time</div>
               {days.map((day) => (
                 <div key={day} className="bg-blue-50 font-semibold text-center py-3 text-blue-700">{day}</div>
               ))}
             </div>
-            <div className="grid grid-cols-6 divide-x divide-gray-300">
+            <div className="grid grid-cols-6 divide-x divide-gray-300 min-w-[700px]">
               <div>
                 {hours.map((hour) => (
                   <div key={hour} className="h-16 border-t border-gray-300 flex items-center justify-center text-sm font-medium bg-gray-50">{hour}</div>
@@ -120,11 +122,13 @@ const Aboutstudent = () => {
               {days.map((day) => (
                 <div key={day}>
                   {hours.map((hour) => (
-                    <div key={hour}
+                    <div
+                      key={hour}
                       onClick={() => handleCellClick(day, hour)}
-                      className={`h-16 border-t border-gray-300 ${
+                      className={`h-16 border-t border-gray-300 cursor-pointer ${
                         schedule[`${day}-${hour}`] ? 'bg-blue-300 text-white' : 'bg-white hover:bg-blue-200'
-                      } flex items-center justify-center`}>
+                      } flex items-center justify-center`}
+                    >
                       {schedule[`${day}-${hour}`] || ''}
                     </div>
                   ))}
@@ -135,9 +139,10 @@ const Aboutstudent = () => {
         </div>
       </div>
 
+      {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
-          <div className="bg-white p-8 rounded-2xl shadow-xl w-[400px]">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50">
+          <div className="bg-white p-8 rounded-2xl shadow-xl w-[90%] max-w-md">
             <h2 className="text-2xl font-bold mb-4 text-center text-blue-300">Add or Delete Note</h2>
             <p className="text-sm mb-2 text-gray-600">{`${selectedDay} - ${selectedTime}`}</p>
             <textarea
